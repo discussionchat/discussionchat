@@ -1,0 +1,51 @@
+@font-face {
+    font-family: "SpoqaHanSansBold";
+    src: url("./fonts/SpoqaHanSansBold.ttf") format("truetype"),
+        url("./fonts/SpoqaHanSansBold.woff2") format("woff2"),
+        url("./fonts/SpoqaHanSansBold.woff") format("woff"); /* Pretty Modern Browsers */
+}
+
+@font-face {
+    font-family: "SpoqaHanSansRegular";
+    src: url("./fonts/SpoqaHanSansRegular.ttf") format("truetype"),
+        url("./fonts/SpoqaHanSansRegular.woff2") format("woff2"),
+        url("./fonts/SpoqaHanSansRegular.woff") format("woff"); /* Pretty Modern Browsers */
+}
+
+@font-face {
+    font-family: "SpoqaHanSansLight";
+    src: url("./fonts/SpoqaHanSansLight.ttf") format("truetype"),
+        url("./fonts/SpoqaHanSansLight.woff2") format("woff2"),
+        url("./fonts/SpoqaHanSansLight.woff") format("woff"); /* Pretty Modern Browsers */
+}
+body {
+    font-family: "SpoqaHanSansLight";
+}
+
+.main_text {
+    padding: 3%;
+    font-family: "SpoqaHanSansBold";
+}
+.middle_text {
+    padding-bottom: 5%;
+}
+
+#tutorial {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 25px;
+    padding: 5%;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+.card-style {
+    border-radius: 25px;
+    height: 150px;
+}
