@@ -33,11 +33,16 @@ function dataArray(result) {
     var roomList_child = "";
 
     for (let i = 0; i < data.length; i++) {
+        var a = data[i]["roomURL"].slice(-2);
+        if (a.startsWith("=")) {
+            a = a.slice(-1);
+        }
+        console.log(a);
         roomList_child += `
 		<div class="col s3 ">
 					<div class="card card-style">
 						<div class="card-content">
-							<span class="center card-title">${i + 1}번 방</span>
+							<span class="center card-title">${a}번 방</span>
 							<div class="card-action enter-button">
 								<a class="btn center white-text "href="${data[i]["roomURL"]}">입장하기</a>
 							</div>
