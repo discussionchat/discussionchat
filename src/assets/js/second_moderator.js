@@ -1,16 +1,16 @@
-var enjoyhint_steps_moderator = [
+var enjoyhint_steps = [
     { // 0
         "next .overview-title-wrapper": "최상단에는 <b>토의의 주제</b>가 있습니다.",
         showSkip: false,
         "nextButton": {text: "다음"}
     },
-    { // 1
+    {
         "next .overview-content-wrapper": "이곳은 <b>토의의 개요</b>를 볼 수 있는<br> 탭입니다.",
         showSkip: false,
         "nextButton": {text: "다음"}
     },
     {
-        "next .overview-tabs" : "<b>두 단계</b>를 거쳐 토의가 이루어집니다. 현재 '<b>문제 분석</b>' 단계에 있습니다.",
+        "next .overview-tabs" : "<b>세 단계</b>를 거쳐 토의가 이루어집니다. 현재 '<b>문제 분석</b>' 단계에 있습니다.",
         showSkip: false,
         "nextButton": {text: "다음"}
     },
@@ -52,6 +52,13 @@ var enjoyhint_steps_moderator = [
         event: "vote",
         showSkip: false,
         onBeforeStart: function() {
+            // setTimeout(function() {
+            //     addItem("단속의 필요성");
+            // }, 500)
+            // setTimeout(function() {
+            //     addItem("주차 공간 자체의 부족");
+            // }, 1000)
+
             Array.from(document.querySelectorAll(".list-item-like")).forEach(function(ele) {
                 ele.addEventListener("click", function(e) {
                     if (enjoyhint_instance.getCurrentStep() == 8)
@@ -78,7 +85,7 @@ var enjoyhint_steps_moderator = [
             // });
 
             // add some chats
-            var chats = Array.from(document.querySelectorAll(".chatroom-utterances-wrapper.hide:not(.reply)"));
+            var chats = Array.from(document.querySelectorAll(".chatroom-utterances-wrapper.hide"));
             for (const [i, ele] of chats.entries()) {
                 setTimeout(function() {
                     ele.classList.remove("hide");
@@ -91,10 +98,9 @@ var enjoyhint_steps_moderator = [
         }
     },
     { // 10
-        "custom .chatroom-utterances-wrapper.evidence" : "마찬가지로 특정 메시지 위에 마우스를 두면, 맨 오른쪽에 <b>'후보 등록'</b> 버튼이 나타납니다.<br>'후보 등록' 버튼을 <b>클릭</b>해서 이 메시지를 투표 후보로 올려보세요!",
+        "click .chatroom-utterances-wrapper.evidence" : "특정 메시지 위에 마우스를 두면, 우측에 <b>'후보 등록'</b> 버튼이 나타납니다.<br>'후보 등록' 버튼을 <b>클릭</b>해서 이 메시지를 투표 후보로 올려보세요!",
         showSkip: false,
         onBeforeStart: function() {
-            document.querySelector(".chatroom-utterances-wrapper.evidence + .reply").scrollIntoView(false);
             document.querySelector(".enjoyhint_svg_wrapper").style.transform = "";
             document.querySelector(".enjoyhint_next_btn").style.transform = "";
         }
@@ -150,7 +156,7 @@ var enjoyhint_steps_moderator = [
                 newCurrent.querySelector(".overview-section").innerHTML += '<div class="overview-section-list"><div class="input-container"> <input class="input-list-new" type="text" placeholder="증거를 입력해보세요"> </div> </div>';
 
                 let addTopicBtn = document.querySelector(".pseudo")
-                if (addTopicBtn) 
+                if (addTopicBtn)
                     document.getElementById("question0").insertBefore(addTopicBtn, newCurrent.nextElementSibling);
             }, 1000);
             
@@ -164,17 +170,13 @@ var enjoyhint_steps_moderator = [
         onBeforeStart: function() {
             document.querySelector(".enjoyhint_svg_wrapper").style.transform = "";
             document.querySelector(".enjoyhint_next_btn").style.transform = "";
-
-            let dropdown = document.getElementById("dropdown");
-            if (!dropdown.classList.contains("hide")) {
-                dropdown.classList.add("hide");
-            }
         }
 
     }
 ];
 
 // moderator ver
+var enjoyhint_steps_moderator = [...enjoyhint_steps];
 enjoyhint_steps_moderator[4]["next #question1"] = enjoyhint_steps_moderator[4]["next #question1"].replace("에 참여", "을 진행");
 enjoyhint_steps_moderator[7] = {
     "custom .overview-section-container.current" : "토의자들이 한계점을 추가하였습니다. <br>부적절한 한계점은 <b>휴지통 버튼을 눌러 삭제</b>해주세요.",
@@ -202,7 +204,6 @@ enjoyhint_steps_moderator[7] = {
 enjoyhint_steps_moderator[8] = {
     "next .overview-section-container.current" : "토의자들이 <b>투표를 진행</b>하였습니다. <br>의견이 어느 정도 모아진 것 같죠?<br>참고로 중복 투표가 가능합니다.",
     showSkip: false,
-    "nextButton": {text: "다음"},
     onBeforeStart: function() {
         setTimeout(function() {
             countVote( document.querySelectorAll(".list-item-delete")[0], 5);
@@ -260,7 +261,6 @@ enjoyhint_steps_moderator.splice(13, 0, {
         }
     }
 });
-
 enjoyhint_steps_moderator.splice(6, 0, {
     "custom .overview-add-section-button.bottom" : "질문을 추가할 수 있습니다. <br><b>더하기 표시를 클릭</b>해서 <br>문제 분석 과정을 위해 필요하다고 생각되는 <br>새로운 질문을 추가해보세요.",
     showSkip: false,
@@ -279,116 +279,15 @@ enjoyhint_steps_moderator.splice(6, 0, {
             if (enjoyhint_instance.getCurrentStep() == 6) {
                 enjoyhint_instance.trigger("next");
             }
+
+            
             
             addTopic(topicInput.value);
         }
     }
 });
-enjoyhint_steps_moderator[7]["next #question0"] = enjoyhint_steps_moderator[7]["next #question0"].replace("현재는", "질문이 추가되었네요! 현재는");
 
-// added only for moderator ver
-
-enjoyhint_steps_moderator.splice(11, 0, {
-    "custom .chatroom-utterances-wrapper.inline" : "의견을 제시한 메시지에 대해 답변이 추천되었네요. <br><b>클릭해서 추천된 답변을 사용</b>해보세요!",
-    showSkip: false,
-    onBeforeStart: function() {
-        document.querySelector(".enjoyhint_svg_wrapper").style.transform = "";
-        document.querySelector(".enjoyhint_next_btn").style.transform = "";
-
-        Array.from(document.querySelectorAll(".feedback .btn")).forEach(function(ele, i) {
-            ele.onclick = function() {
-                let reply = ele.parentElement.parentElement.parentElement.nextElementSibling;
-                reply.querySelector(".chatroom-utterances-text").innerText = ele.innerText;
-                reply.classList.remove("hide");
-
-                if (enjoyhint_instance.getCurrentStep() == 11 || enjoyhint_instance.getCurrentStep() == 13) {
-                    document.querySelector(".chatroom-utterances-wrapper.evidence").scrollIntoView(false);
-                    enjoyhint_instance.trigger("next");
-                }
-            }
-        });
-    }
-});
-
-enjoyhint_steps_moderator.splice(17, 0, {
-    "custom .feedback-wrapper" : "이곳에는 토론에 도움이 되는 사회자 상용구가 표시됩니다. <br>이번 단계를 소개하는 상용구가 추천되었네요. <br><b>클릭해서 해당 상용구를 사용</b>해보세요!",
-    showSkip: false,
-    onBeforeStart: function() {
-        document.querySelector(".enjoyhint_svg_wrapper").style.transform = "";
-        document.querySelector(".enjoyhint_next_btn").style.transform = "";
-
-        let card = document.querySelector(".feedback-card");
-        card.classList.remove("hide");
-        document.querySelector(".feedback-default").classList.add("hide");
-
-        card.onclick = function() {
-            card.remove();
-            document.querySelector(".feedback-default").classList.remove("hide");
-
-            if (enjoyhint_instance.getCurrentStep() == 19)
-                enjoyhint_instance.trigger("next");
-        }
-    }
-});
-enjoyhint_steps_moderator.splice(18, 0, {
-    "next .chatroom-content-wrapper" : "이번 단계를 소개하셨습니다.<br>이런 식으로 추천된 상용구를 이용하시면 됩니다.",
-    showSkip: false,
-    "nextButton": {text: "다음"},
-    onBeforeStart: function() {
-        addChat("이번 단계는 전 단계에서 합의한 문제 원인의 증거가 무엇인지에 대해 논의해보도록 하겠습니다.", true);
-
-        setTimeout(function() {
-            document.querySelector(".enjoy_hint_label").style.transform = "translateX(-400px)";
-            document.querySelector(".enjoyhint_svg_wrapper").style.transform = "rotateY(180deg) translateX(400px)";
-            document.querySelector(".enjoyhint_next_btn").style.transform = "translateX(-400px)";
-        }, 800);
-    }
-});
-enjoyhint_steps_moderator.splice(19, 0, {
-    "next .feedback-more" : "이 버튼을 클릭하시면 추천되지 않은 다른 상용구도 이용하실 수 있습니다.",
-    showSkip: false,
-    "nextButton": {text: "다음"},
-    onBeforeStart: function() {
-        document.querySelector(".enjoyhint_svg_wrapper").style.transform = "";
-        document.querySelector(".enjoyhint_next_btn").style.transform = "";
-    }
-});
-
-enjoyhint_steps_moderator.splice(12, 0, {
-    "custom .chatroom-utterances-wrapper.evidence" : "참여자의 메시지 위에 마우스를 두면, 오른쪽에서 두 번째에 <b>'답글 달기'</b> 버튼이 나타납니다.<br>답변이 추천되지 않았지만 답변을 달고 싶을 때에는, 이 '답글 달기' 버튼을 <b>클릭</b>해주세요.<br>클릭해서 답글을 달아 볼까요?",
-    showSkip: false,
-    onBeforeStart: function() {
-        document.getElementById("add-reply").onclick = function(e) {
-            document.querySelector(".evidence .feedback").classList.remove("hide");
-            enjoyhint_instance.trigger("next");
-        }
-        document.querySelector(".enjoyhint_svg_wrapper").style.transform = "";
-        document.querySelector(".enjoyhint_next_btn").style.transform = "";
-    }
-});
-enjoyhint_steps_moderator.splice(13, 0, {
-    "custom .chatroom-utterances-wrapper.evidence" : "답변 선택지가 나타났네요! <b>클릭</b>해서 답변을 달아보세요!",
-    showSkip: false,
-    onBeforeStart: function() {
-        document.querySelector(".chatroom-utterances-wrapper.evidence").scrollIntoView(false);
-    }
-});
+if (amModerator)
+    enjoyhint_steps_moderator[7]["next #question0"] = enjoyhint_steps_moderator[7]["next #question0"].replace("현재는", "질문이 추가되었네요! 현재는");
 
 init();
-
-// feedback more
-let moreBtn = document.querySelector(".feedback-more");
-moreBtn.onclick = function(e) {
-    if (e.target != moreBtn) return;
-    document.getElementById("dropdown").classList.remove("hide");
-}
-
-Array.from( document.querySelectorAll(".dropdown-option") ).forEach(function(ele) {
-    ele.onclick = function() {
-        addChat(ele.innerText, true);
-        document.getElementById("dropdown").classList.add("hide");
-
-        if (enjoyhint_instance.getCurrentStep() == 21)
-            enjoyhint_instance.trigger("next");
-    }
-})

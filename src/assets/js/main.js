@@ -14,7 +14,7 @@
 // }
 var enjoyhint_instance;
 var timer;
-var serverHost = "/room/index.html"
+var serverHost = "http://143.248.249.114:4000/room/index.html"
 var amModerator = ( document.location.pathname.includes("moderator") ) ? true : false;
 
 function init() {
@@ -52,18 +52,10 @@ function init() {
 
 var tabItems = Array.from(document.querySelectorAll(".overview-tab-item"));
 var questions = Array.from(document.querySelectorAll(".overview-sections-wrapper"));
-var addButtons = Array.from(document.querySelectorAll(".btn-add"));
-var addQuestionButtons = Array.from(document.querySelectorAll(".overview-add-section-button"));
+var addButtons = Array.from(document.querySelectorAll(".btn-add span:last-child"));
 
 var input = document.querySelector(".input-list-new");
 var chatInput = document.querySelector(".chatbox-input");
-
-addQuestionButtons.forEach(function(ele, i) {
-    ele.onclick = function(e) {
-        // modal
-
-    }
-});
 
 tabItems.forEach(function(ele, i) {
     ele.onclick = function(e) {
@@ -88,8 +80,15 @@ if (input) {
 
 addButtons.forEach(function(ele) {
     ele.onclick = function(e) {
-        let text = ele.parentElement.innerText;
-        addItem( text.substr(0, text.length - 6) );
+        let text = ele.parentElement.parentElement.innerText;
+
+        if (enjoyhint_instance.getCurrentStep() == 14 && amModerator) {
+            addItem( text.substr(0, text.length - 12) );
+            enjoyhint_instance.trigger("next");
+        }
+        else {
+            addItem( text.substr(0, text.length - 6) );
+        }
     }
 });
 
@@ -138,13 +137,44 @@ function addChat(val, isModerator) {
         userClass += " moderator";
         item.className += "moderator ";
     }
+    var value = "";
+
+    value += val;
+    let isSecond = val.includes("밀집");
+    if (isSecond) {
+        value += '<div class="btn-add"><span>후보 등록</span></div>';
+    }
 
     item.className += " chatroom-utterances-wrapper";
     item.innerHTML = '<div class="chatroom-utterances-container"> <div class="user-box ' + userClass + '">' + user + '</div> <div class="chatroom-utterances-text">' 
-        + val + '</div></div>';
+        + value + '</div></div>';
 
-    chatroom.appendChild(item);
+
+    // append before hidden
+    var hidden = document.querySelector(".chatroom-utterances-wrapper.hide");
+
+    if (hidden)
+        chatroom.insertBefore(item, hidden);
+    else
+        chatroom.appendChild(item);
+
+    // addButton
+    if (isSecond) {
+        item.querySelector(".btn-add span").onclick = function() {
+            addItem( val );
+        }
+    }
+        
+    // scroll
     item.scrollIntoView(false);
+}
+
+function addTopic(val) {
+    let later = document.querySelector(".current ~ .overview-section-container.later");
+    let newTopic = later.cloneNode();
+    newTopic.innerHTML = later.innerHTML;
+    newTopic.querySelector(".overview-section-title").innerText = val;
+    questions[0].insertBefore(newTopic, later);
 }
 
 function makeTabsInactive() {

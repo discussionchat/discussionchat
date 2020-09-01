@@ -42,10 +42,16 @@ body {
 
 a {
     color: white;
+
     text-decoration: none;
 }
 
 .card-style {
     border-radius: 25px;
     height: 150px;
+    text-align: center;
+}
+
+.card-action {
+    margin: auto;
 }

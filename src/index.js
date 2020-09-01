@@ -6,9 +6,7 @@ import * as Papa from "papaparse";
 var SHEET_ID = "173OIZL1s1u0iD0m3swshseFh-z9tWDx9lPJHWVsROTQ";
 var API_KEY = "AIzaSyADT3iqNAWUl75iqvwuT1yKVN7dlew2EvI";
 
-
 function fetchSheet({ spreadsheetId, apiKey, complete }) {
-    console.log("dd");
     let url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/roomKey/?key=${apiKey}`;
     return fetch(url).then(response =>
         response.json().then(result => {
@@ -21,8 +19,6 @@ function fetchSheet({ spreadsheetId, apiKey, complete }) {
 }
 
 function init() {
-    console.log("dd");
-
     fetchSheet({
         spreadsheetId: SHEET_ID,
         apiKey: API_KEY,
@@ -42,7 +38,7 @@ function dataArray(result) {
 					<div class="card card-style">
 						<div class="card-content">
 							<span class="center card-title">${i + 1}번 방</span>
-							<div class="card-action">
+							<div class="card-action enter-button">
 								<a class="btn center white-text "href="${data[i]["roomURL"]}">입장하기</a>
 							</div>
 						</div>
