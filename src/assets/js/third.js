@@ -1,7 +1,7 @@
 var enjoyhint_steps_moderator = [
     {
         // 0
-        "next .chatroom-users-container":
+        "next .user-box moderator currentr":
             "✅ 사회자는 참여자와 달리 토론을 진행합니다",
         showSkip: false,
         nextButton: { text: "다음" }
@@ -371,7 +371,7 @@ enjoyhint_steps_moderator.splice(6, 0, {
 
 //3
 enjoyhint_steps_moderator.splice(3, 0, {
-    "custom .chatroom-utterances-wrapper.inline":
+    "custom .feedback":
         "의견을 제시한 메시지에 대해 답변이 추천되었네요. <br><b>클릭해서 추천된 답변을 사용</b>해보세요!",
     showSkip: false,
     onBeforeStart: function() {

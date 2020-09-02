@@ -1,10 +1,26 @@
 var enjoyhint_steps = [
-    {
-        // 0
-        "next .chatroom-users-container": "지금은 참여자 모드입니다.",
-        showSkip: false,
-        nextButton: { text: "다음" }
-    },
+    // {
+    //     // 0
+    //     "next .chatroom-content-container":
+    //         "사회자를 따라 주제에 대해 자유롭게 토론하시면 됩니다.",
+    //     showSkip: false,
+    //     nextButton: { text: "다음" },
+    //     onBeforeStart: {
+    //         function() {
+    //             setTimeout(function() {
+    //                 document.querySelector(
+    //                     ".enjoy_hint_label"
+    //                 ).style.transform = "translateX(-400px)";
+    //                 document.querySelector(
+    //                     ".enjoyhint_svg_wrapper"
+    //                 ).style.transform = "rotateY(180deg) translateX(400px)";
+    //                 document.querySelector(
+    //                     ".enjoyhint_next_btn"
+    //                 ).style.transform = "translateX(-400px)";
+    //             }, 800);
+    //         }
+    //     }
+    // },
     // {
     //     // 1
     //     "next .overview-content-wrapper":
@@ -26,41 +42,41 @@ var enjoyhint_steps = [
     //     showSkip: false,
     //     nextButton: { text: "다음" }
     // },
-    // {
-    //     // 4
-    //     "next .chatroom-container":
-    //         "이곳은 토의가 이루어질 <b>채팅창</b>입니다!",
-    //     showSkip: false,
-    //     nextButton: { text: "다음" },
-    //     onBeforeStart: function() {
-    //         setTimeout(function() {
-    //             document.querySelector(".enjoy_hint_label").style.transform =
-    //                 "translateX(-400px)";
-    //             document.querySelector(
-    //                 ".enjoyhint_svg_wrapper"
-    //             ).style.transform = "rotateY(180deg) translateX(400px)";
-    //             document.querySelector(".enjoyhint_next_btn").style.transform =
-    //                 "translateX(-400px)";
-    //         }, 800);
+    {
+        // 4
+        "next .chatroom-container":
+            "이곳은 토의가 이루어질 <b>채팅창</b>입니다!",
+        showSkip: false,
+        nextButton: { text: "다음" },
+        onBeforeStart: function() {
+            setTimeout(function() {
+                document.querySelector(".enjoy_hint_label").style.transform =
+                    "translateX(-400px)";
+                document.querySelector(
+                    ".enjoyhint_svg_wrapper"
+                ).style.transform = "rotateY(180deg) translateX(400px)";
+                document.querySelector(".enjoyhint_next_btn").style.transform =
+                    "translateX(-400px)";
+            }, 800);
 
-    //         // Array.from(document.querySelectorAll(".list-item-like")).forEach(function(ele) {
-    //         //     ele.removeEventListener("click", countVote);
-    //         // });
+            // Array.from(document.querySelectorAll(".list-item-like")).forEach(function(ele) {
+            //     ele.removeEventListener("click", countVote);
+            // });
 
-    //         // add some chats
-    //         var chats = Array.from(
-    //             document.querySelectorAll(".chatroom-utterances-wrapper.hide")
-    //         );
-    //         for (const [i, ele] of chats.entries()) {
-    //             setTimeout(function() {
-    //                 ele.classList.remove("hide");
-    //                 ele.scrollIntoView(false);
-    //             }, i * 100);
+            // add some chats
+            // var chats = Array.from(
+            //     document.querySelectorAll(".chatroom-utterances-wrapper.hide")
+            // );
+            // for (const [i, ele] of chats.entries()) {
+            //     setTimeout(function() {
+            //         ele.classList.remove("hide");
+            //         ele.scrollIntoView(false);
+            //     }, i * 100);
 
-    //             if (ele.classList.contains("evidence")) break;
-    //         }
-    //     }
-    // },
+            //     if (ele.classList.contains("evidence")) break;
+            // }
+        }
+    },
     {
         // 1
         "key .chatbox-input-wrapper":
