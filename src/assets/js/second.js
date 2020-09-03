@@ -129,9 +129,10 @@ var enjoyhint_steps = [
     {
         // 2
         event: "click",
-        selector: ".evidence + .chatroom-utterances-wrapper",
+
+        selector: ".evidence + .chatroom-utterances-wrapper .btn-add",
         description:
-            "좋은 의견이 있다면, 모든 사람들이 볼 수 있도록 후보로 등록해보세요! <br>특정 메시지 위에 마우스를 두면 나타나는 <b>'후보 등록'</b> 버튼으로 등록하실 수 있어요! ",
+            "좋은 의견이 있다면, 모든 사람들이 볼 수 있도록 후보로 등록해보세요! <br>특정 메시지 위에 마우스를 두면 오른쪽에 나타나는 <b>'후보 등록'</b> 버튼으로 등록하실 수 있어요! ",
         showSkip: false
     },
     // {
@@ -159,15 +160,20 @@ var enjoyhint_steps = [
     },
     {
         // 4
-        "custom .overview-section-container.current":
-            "맘에 드는 의견이 있다면 <b>투표</b>를 해보세요😃 중복 투표가 가능합니다.",
-        event: "vote",
+        "custom a.list-item-like .current":
+            "맘에 드는 의견이 있다면 손가락 버튼을 눌러 <b>투표</b>를 해보세요😃 중복 투표가 가능합니다.",
+        // event: "vote",
         showSkip: false,
+        nextButton: { text: "다음" },
+
         onBeforeStart: function() {
             Array.from(document.querySelectorAll(".list-item-like")).forEach(
                 function(ele) {
                     ele.addEventListener("click", function(e) {
-                        if (enjoyhint_instance.getCurrentStep() == 4)
+                        if (
+                            enjoyhint_instance.getCurrentStep() == 4 ||
+                            enjoyhint_instance.getCurrentStep() == 3
+                        )
                             enjoyhint_instance.trigger("next");
                     });
                 }
@@ -207,7 +213,7 @@ var enjoyhint_steps = [
         "next .overview-wrapper":
             "참여자 튜토리얼이 끝났습니다. 사회자 튜토리얼로 들어가볼까요?",
         showSkip: false,
-        nextButton: { text: "종료" },
+        nextButton: { text: "네!👍🏻" },
         onBeforeStart: function() {
             setTimeout(function() {
                 var newCurrent = document.querySelector(

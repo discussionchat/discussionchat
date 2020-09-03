@@ -8,6 +8,8 @@
 
 	<!-- Compiled and minified CSS -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
 	<link rel="stylesheet" type="text/css" href="./src/css/style.css" />
 
 	<!-- Compiled and minified JavaScript -->
@@ -21,16 +23,23 @@
 
 	<div class="container">
 		<h1 class="header center grey-text main_text">토론 대기 방</h1>
-		<h4 class="header center grey-text middle_text">튜토리얼 안내가 시작되면 <br>튜토리얼 버튼을 눌러주세요!</h4>
+		<h4 class="header center grey-text middle_text ">튜토리얼 안내가 시작되면 <br>튜토리얼 버튼을 눌러주세요!</h4>
 
 		<div class="row " id="tutorial">
 			<a class="pulse waves-effect waves-light btn-large" href="src/2/index.html">튜토리얼 보기</a>
 		</div>
 
 
-		<h4 class="header center grey-text middle_text" id="enter-discussionroom">튜토리얼을 보셨나요? <br>팀 번호와 같은 번호의 방으로
-			입장해주세요</h4>
-			<h5 class="header center grey-text middle_text" id="enter-discussionroom">1️⃣조원들을 확인하시고, <br>2️⃣서로 간 인사를 나누세요</h5>
+		<h5 class="header center grey-text middle_text" id="enter-discussionroom"><div class="step_container">튜토리얼을 보셨나요? <br>토론은 다음과 같은 순서로 진행됩니다.</div></h5>
+			<div class="header center grey-text middle_text"><div class="step_container"><div class="step_header"><span class="step_label">주제 1(20분)</span><div class="step_content">주변에서 업무나 사업에 AI를 적용한 사례는 무엇인가? </div>
+	
+		</div><i class="material-icons">chevron_right
+</i>
+<div class="step_header"><span class="step_label">주제 2(15분)</span><div class="step_content">현재 업무나 사업에 AI를 적용하는데 있어 어려운 점은 무엇인가?</div></div><i class="material-icons">chevron_right
+</i><div class="step_header"><span class="step_label">주제 3(10분)</span><div class="step_content">그럼 나는, 우리 조직은 어떤 준비를 해야 하는가?</div></div></div></div>
+			<h5 class="header center grey-text middle_text"><div class="step_container">토론 중 어려운 점이 있으시면 채팅창에 <b class="red-text">[지원요청]</b>을 적어주세요! <br>관리자가 도와드리도록 하겠습니다.<br><b>팀 번호와 같은 방 번호로 입장해주시기 바랍니다.</b></h5>
+							
+
 		<div class="row" id="roomList">
 		</div>
 

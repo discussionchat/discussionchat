@@ -2,7 +2,7 @@ var enjoyhint_steps_moderator = [
     {
         // 0
         "next .user-box moderator currentr":
-            "✅ 사회자는 참여자와 달리 토론을 진행합니다",
+            "✅ 주제가 바뀔 때마다 사회자가 바뀌며, <br>사회자는 참여자와 달리 <strong>토론을 진행</strong>합니다",
         showSkip: false,
         nextButton: { text: "다음" }
     },
@@ -224,8 +224,8 @@ var enjoyhint_steps_moderator = [
 
 //1
 enjoyhint_steps_moderator[1] = {
-    "custom .overview-section-container.current":
-        "토의자들이 한계점을 추가하였습니다. <br>부적절한 한계점은 <b>휴지통 버튼을 눌러 삭제</b>해주세요.",
+    "custom a.list-item-delete .current":
+        "토의자들이 의견을 추가하였습니다. <br>부적절한 의견은 <b>휴지통 버튼을 눌러 삭제</b>해주세요.",
     showSkip: false,
     onBeforeStart: function() {
         addItem("모르게쪄염 >_<");
@@ -254,7 +254,7 @@ enjoyhint_steps_moderator[2] = {
     "next .overview-section-container.current":
         "토의자들이 <b>투표를 진행</b>하였습니다. <br>의견이 어느 정도 모아진 것 같죠?",
     showSkip: false,
-    nextButton: { text: "다음" },
+    nextButton: { text: "네 👍🏻" },
     onBeforeStart: function() {
         setTimeout(function() {
             countVote(document.querySelectorAll(".list-item-delete")[0], 5);
@@ -372,7 +372,7 @@ enjoyhint_steps_moderator.splice(6, 0, {
 //3
 enjoyhint_steps_moderator.splice(3, 0, {
     "custom .feedback":
-        "의견을 제시한 메시지에 대해 답변이 추천되었네요. <br><b>클릭해서 추천된 답변을 사용</b>해보세요!",
+        "사회자 역할에서는 AI가 원활한 토론을 위한 답변을 추천해줍니다.<br><b>클릭해서 추천된 답변을 사용</b>해보세요!",
     showSkip: false,
     onBeforeStart: function() {
         // setTimeout(function() {
@@ -435,7 +435,7 @@ enjoyhint_steps_moderator.splice(3, 0, {
 
 enjoyhint_steps_moderator.splice(4, 0, {
     "custom .feedback-wrapper":
-        "이곳에는 토론에 도움이 되는 사회자 상용구가 표시됩니다. <br>이번 단계를 소개하는 상용구가 추천되었네요. <br><b>클릭해서 해당 상용구를 사용</b>해보세요!",
+        "이곳에는 토론에 도움이 되는 사회자 상용구가 표시됩니다. <br>이번에는 이번 단계를 소개하는 상용구가 추천해주네요. <br><b>클릭해서 해당 상용구를 사용</b>해보세요!",
     showSkip: false,
     onBeforeStart: function() {
         document.querySelector(".enjoyhint_svg_wrapper").style.transform = "";
@@ -477,21 +477,21 @@ enjoyhint_steps_moderator.splice(4, 0, {
 //         }, 800);
 //     }
 // });
-// enjoyhint_steps_moderator.splice(5, 0, {
-//     "next .feedback-more":
-//         "이 버튼을 클릭하시면 추천되지 않은 다른 상용구도 이용하실 수 있습니다.",
-//     showSkip: false,
-//     nextButton: { text: "다음" },
-//     onBeforeStart: function() {
-//         addChat(
-//             "이전에 이야기한 어려운 점을 해결하기위한 방법은 무엇인지에 대해 논의해보겠습니다.",
-//             true
-//         );
+enjoyhint_steps_moderator.splice(5, 0, {
+    "next .feedback-more":
+        "이 버튼을 클릭하시면 추천되지 않은 다른 상용구도 이용하실 수 있습니다.",
+    showSkip: false,
+    nextButton: { text: "그렇군요" },
+    onBeforeStart: function() {
+        addChat(
+            "이전에 이야기한 어려운 점을 해결하기위한 방법은 무엇인지에 대해 논의해보겠습니다.",
+            true
+        );
 
-//         document.querySelector(".enjoyhint_svg_wrapper").style.transform = "";
-//         document.querySelector(".enjoyhint_next_btn").style.transform = "";
-//     }
-// });
+        document.querySelector(".enjoyhint_svg_wrapper").style.transform = "";
+        document.querySelector(".enjoyhint_next_btn").style.transform = "";
+    }
+});
 
 // enjoyhint_steps_moderator.splice(4, 0, {
 //     "custom .chatroom-utterances-wrapper.evidence":

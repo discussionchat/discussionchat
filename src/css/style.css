@@ -55,3 +55,32 @@ a {
 .card-action {
     margin: auto;
 }
+
+.step_container {
+    font-size: 110%;
+    line-height: 150%;
+}
+
+.step_header {
+    width: 200px;
+    height: 200px;
+    border-radius: 100px;
+    border: 1px solid grey;
+    display: inline-flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 50px 30px;
+    margin: 3%;
+}
+
+.step_label {
+    width: 100%;
+    font-weight: 900;
+    /* margin: auto auto; */
+}
+
+.step_content {
+    width: 100%;
+    /* margin: auto auto; */
+    display: inline-block;
+}

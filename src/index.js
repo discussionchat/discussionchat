@@ -28,23 +28,22 @@ function init() {
 
 function dataArray(result) {
     var data = result.data;
-    console.log(data);
+
     var roomList = document.getElementById("roomList");
     var roomList_child = "";
 
     for (let i = 0; i < data.length; i++) {
-        // var a = data[i]["roomURL"].slice(-2);
-        // if (a.startsWith("=")) {
-        //     a = a.slice(-1);
-        // }
-        // console.log(a);
+        var a = data[i]["roomURL"];
+        var newAdress = a.concat(`&roomName=팀1-${i + 1}`);
+
+        console.log(newAdress);
         roomList_child += `
 		<div class="col s3 ">
 					<div class="card card-style">
 						<div class="card-content">
 							<span class="center card-title">${i + 1}번 방</span>
 							<div class="card-action enter-button">
-								<a class="btn center white-text "href="${data[i]["roomURL"]}">입장하기</a>
+								<a class="btn center white-text "href="${newAdress}">입장하기</a>
 							</div>
 						</div>
 					</div>
