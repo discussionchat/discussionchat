@@ -4,7 +4,9 @@ import * as Papa from "papaparse";
 // https://docs.google.com/spreadsheets/d/173OIZL1s1u0iD0m3swshseFh-z9tWDx9lPJHWVsROTQ/edit#gid=0
 
 var SHEET_ID = "173OIZL1s1u0iD0m3swshseFh-z9tWDx9lPJHWVsROTQ";
-var API_KEY = "AIzaSyADT3iqNAWUl75iqvwuT1yKVN7dlew2EvI";
+var API_KEY = "AIzaSyD9PzY8AC1d-E5D9JzYazFUfWzIS9Zdv_Q";
+
+console.log(API_KEY);
 
 function fetchSheet({ spreadsheetId, apiKey, complete }) {
     let url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/roomKey/?key=${apiKey}`;
